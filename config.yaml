@@ -1,0 +1,20 @@
+### tianliu@genomics.cn
+### configfile for dereplication
+
+params:
+  dRep:
+    ### MAGs filter
+    min_len: 50000
+    completeness: 50
+    contamination: 10
+    threads: 16
+    ### MAGs choose (default: 1xCOM - 5xCNT + 0.5xlog(N50))
+    choose_comW: 1
+    choose_conW: 5
+    choose_strW: 0
+    choose_n50: 0.5
+assay:
+  strain: "1.assay/01.dRep_strain"
+  species: "1.assay/02.dRep_species"
+
+logs: "1.assay/logs"

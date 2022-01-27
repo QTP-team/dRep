@@ -1,0 +1,20 @@
+localrules: all
+
+__default__:
+  queue: "st.q"
+  project: "P19Z10200N0314"
+  workdir: "./"
+  mem: "1G"
+  cores: 1
+
+dRep_strain:
+  mem: "100G"
+  cores: 8
+  output: "1.assay/cluster_logs/{rule}.{wildcards}.o"
+  error: "1.assay/cluster_logs/{rule}.{wildcards}.e"
+
+dRep_species:
+  mem: "33G"
+  cores: 8
+  output: "1.assay/cluster_logs/{rule}.{wildcards}.o"
+  error: "1.assay/cluster_logs/{rule}.{wildcards}.e"
