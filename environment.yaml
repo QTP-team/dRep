@@ -1,0 +1,8 @@
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - dRep>=3.2.0
+  - snakemake>=5.14
+  - yaml
