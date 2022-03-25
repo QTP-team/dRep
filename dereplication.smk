@@ -1,5 +1,3 @@
-### tianliu@genomics.cn
-
 configfile: "config.yaml"
 shell.executable("bash")
 
@@ -30,7 +28,7 @@ rule dRep_strain:
         os.path.join(config["logs"], "dRep_strain.log")
     shell:
         '''
-        dRep filter \
+        dRep dereplicate \
         {output} \
         -g {input.MAG_dir}/*.fa \
         -p {threads} \
@@ -38,20 +36,11 @@ rule dRep_strain:
         --completeness {params.completeness} \
         --contamination {params.contamination} \
         --genomeInfo {input.g_info} \
-        2>{log}
-
-        dRep cluster \
-        {output} \
-        -p {threads} \
         --MASH_sketch 10000 \
         --S_algorithm ANImf \
         --P_ani 0.95 \
         --S_ani 0.99 \
         --cov_thresh 0.3 \
-        2>> {log}
-
-        dRep choose \
-        {output} \
         --completeness_weight {params.comW} \
         --contamination_weight {params.conW} \
         --strain_heterogeneity_weight {params.strW} \
@@ -80,7 +69,7 @@ rule dRep_species:
         "benchmarks/dRep_species.log"
     shell:
         '''
-        dRep cluster \
+        dRep dereplicate \
         {output} \
         -g {input}/dereplicated_genomes/*.fa \
         -p {threads} \
@@ -89,10 +78,6 @@ rule dRep_species:
         --P_ani 0.90 \
         --S_ani 0.95 \
         --cov_thresh 0.3 \
-        2>> {log}
-
-        dRep choose \
-        {output} \
         --genomeInfo {input}/data_tables/genomeInformation.csv \
         --completeness_weight {params.comW} \
         --contamination_weight {params.conW} \
