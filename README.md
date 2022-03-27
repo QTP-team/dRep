@@ -109,6 +109,8 @@ dRep_species:
 Then, use the following command to post all tasks.
 
 ```shell
+if [ ! -d 1.assay/cluster_logs ];then mkdir -p 1.assay/cluster_logs;fi
+
 snakemake \
 --snakefile dereplication.smk \
 --configfile config.yaml \
