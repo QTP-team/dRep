@@ -73,6 +73,9 @@ rule dRep_species:
         {output} \
         -g {input}/dereplicated_genomes/*.fa \
         -p {threads} \
+        --length {params.min_len} \
+        --completeness {params.completeness} \
+        --contamination {params.contamination} \
         --MASH_sketch 10000 \
         --S_algorithm ANImf \
         --P_ani 0.90 \
